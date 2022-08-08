@@ -25,4 +25,14 @@ public class DeviceController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getDevice(@PathVariable int id) {
+        try {
+            System.out.println(LocalDateTime.now());
+            return ResponseHandler.generateResponse("Successfully device added!", HttpStatus.OK, deviceService.getDevice(id));
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
 }

@@ -14,4 +14,8 @@ public class DeviceService {
         dao.save(device);
         return device;
     }
+
+    public Device getDevice (int id){
+        return dao.findById(id).get();
+    }
 }
