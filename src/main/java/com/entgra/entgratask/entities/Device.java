@@ -1,9 +1,12 @@
 package com.entgra.entgratask.entities;
 
 import com.entgra.entgratask.entities.enums.Status;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
+
 @Entity
 @Table(name = "devices")
 public class Device {
@@ -17,57 +20,37 @@ public class Device {
     private String model;
     @Column
     private Status status;
-    @Column
-    private Timestamp enrolledTime;
+
+    @Column()
+    @CreationTimestamp
+    private LocalDateTime enrolled_time;
 
     public Device() {}
 
-    public Device(int id, String name, String model, Status status) {
+    public Device(String name, String model, String status) {
         super();
-        this.id = id;
         this.name = name;
         this.model = model;
-        this.status = status;
-        this.enrolledTime = new Timestamp(System.currentTimeMillis());;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.status = Status.valueOf(status.toUpperCase());
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getModel() {
         return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public int getId() {
+        return id;
     }
 
-    public Timestamp getEnrolledTime() {
-        return enrolledTime;
-    }
-
-    public void setEnrolledTime(Timestamp enrolledTime) {
-        this.enrolledTime = enrolledTime;
+    public LocalDateTime getEnrolled_time() {
+        return enrolled_time;
     }
 }
