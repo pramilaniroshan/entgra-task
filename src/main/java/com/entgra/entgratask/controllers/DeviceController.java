@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @RestController
@@ -44,9 +45,13 @@ public class DeviceController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Object> updateDevice(@RequestBody Device device) {
+    public ResponseEntity<Object> updateDevice(@Valid @RequestBody Device device) {
         try {
-            return ResponseHandler.generateResponse("Successfully device updated!", HttpStatus.OK, deviceService.updateDevice(device));
+            if(device.getId() <= 0) {
+                return ResponseHandler.generateResponse("Id can't empty", HttpStatus.OK, null);
+            }else {
+                return ResponseHandler.generateResponse("Successfully device updated!", HttpStatus.OK, deviceService.updateDevice(device));
+            }
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
