@@ -26,7 +26,6 @@ public class DeviceService {
 
     public Device updateDevice(Device device) {
         dao.save(device);
-
-        return device;
+        return dao.findById(device.getId()).get();
     }
 }
