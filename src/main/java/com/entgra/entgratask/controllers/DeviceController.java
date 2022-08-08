@@ -48,7 +48,7 @@ public class DeviceController {
     public ResponseEntity<Object> updateDevice(@Valid @RequestBody Device device) {
         try {
             if(device.getId() <= 0) {
-                return ResponseHandler.generateResponse("Id can't empty", HttpStatus.OK, null);
+                return ResponseHandler.generateResponse("Id can't be empty", HttpStatus.OK, null);
             }else {
                 return ResponseHandler.generateResponse("Successfully device updated!", HttpStatus.OK, deviceService.updateDevice(device));
             }

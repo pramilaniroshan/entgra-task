@@ -21,7 +21,7 @@ public class Device {
     @Column
     private Status status;
 
-    @Column()
+    @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime enrolled_time;
 
