@@ -22,13 +22,13 @@ public class Device {
 
     public Device() {}
 
-    public Device(int id, String name, String model, Status status, Timestamp enrolledTime) {
+    public Device(int id, String name, String model, Status status) {
         super();
         this.id = id;
         this.name = name;
         this.model = model;
         this.status = status;
-        this.enrolledTime = enrolledTime;
+        this.enrolledTime = new Timestamp(System.currentTimeMillis());;
     }
 
     public int getId() {
