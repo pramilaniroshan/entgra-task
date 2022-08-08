@@ -10,8 +10,8 @@ public class DeviceService {
     @Autowired
     private DeviceDAO dao;
 
-    public String addDevice (Device device){
+    public Device addDevice (Device device){
         dao.save(device);
-        return "New Device added";
+        return device;
     }
 }
