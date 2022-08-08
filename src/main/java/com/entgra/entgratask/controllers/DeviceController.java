@@ -30,7 +30,17 @@ public class DeviceController {
     public ResponseEntity<Object> getDevice(@PathVariable int id) {
         try {
             System.out.println(LocalDateTime.now());
-            return ResponseHandler.generateResponse("Successfully device added!", HttpStatus.OK, deviceService.getDevice(id));
+            return ResponseHandler.generateResponse("Successfully data retrieved!", HttpStatus.OK, deviceService.getDevice(id));
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteDevice(@PathVariable int id) {
+        try {
+            System.out.println(LocalDateTime.now());
+            return ResponseHandler.generateResponse("Successfully device removed!", HttpStatus.OK, deviceService.deleteDevice(id));
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }

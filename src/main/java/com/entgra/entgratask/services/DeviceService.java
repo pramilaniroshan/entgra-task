@@ -18,4 +18,9 @@ public class DeviceService {
     public Device getDevice (int id){
         return dao.findById(id).get();
     }
+
+    public Device deleteDevice(int id) {
+        dao.deleteById(id);
+        return null;
+    }
 }
