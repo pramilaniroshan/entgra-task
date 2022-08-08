@@ -23,4 +23,10 @@ public class DeviceService {
         dao.deleteById(id);
         return null;
     }
+
+    public Device updateDevice(Device device) {
+        dao.save(device);
+
+        return device;
+    }
 }

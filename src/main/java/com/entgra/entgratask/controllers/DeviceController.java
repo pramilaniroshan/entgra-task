@@ -19,7 +19,6 @@ public class DeviceController {
     @PostMapping("/add")
     public ResponseEntity<Object> addDevice(@RequestBody Device device) {
         try {
-            System.out.println(LocalDateTime.now());
             return ResponseHandler.generateResponse("Successfully device added!", HttpStatus.OK, deviceService.addDevice(device));
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -29,7 +28,6 @@ public class DeviceController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getDevice(@PathVariable int id) {
         try {
-            System.out.println(LocalDateTime.now());
             return ResponseHandler.generateResponse("Successfully data retrieved!", HttpStatus.OK, deviceService.getDevice(id));
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -39,8 +37,16 @@ public class DeviceController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteDevice(@PathVariable int id) {
         try {
-            System.out.println(LocalDateTime.now());
             return ResponseHandler.generateResponse("Successfully device removed!", HttpStatus.OK, deviceService.deleteDevice(id));
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Object> updateDevice(@RequestBody Device device) {
+        try {
+            return ResponseHandler.generateResponse("Successfully device updated!", HttpStatus.OK, deviceService.updateDevice(device));
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
